@@ -1,6 +1,6 @@
 <?php
 /**
-* 2007-2015 PrestaShop
+* 2007-2016 PrestaShop
 *
 * NOTICE OF LICENSE
 *
@@ -19,7 +19,7 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 *  @author    PrestaShop SA <contact@prestashop.com>
-*  @copyright 2007-2015 PrestaShop SA
+*  @copyright 2007-2016 PrestaShop SA
 *  @license   http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
 *  International Registered Trademark & Property of PrestaShop SA
 */
@@ -50,7 +50,6 @@ class Packlinkpro extends Module
         $this->displayName = $this->l('Packlink Pro');
         $this->description = $this->l('Packlink PRO is an innovative cloud-based platform that automates shipping for eCommerce sites and small enterprises.');
     }
-
     /**
      * Don't forget to create update methods if needed:
      * http://doc.prestashop.com/display/PS16/Enabling+the+Auto-Update
@@ -58,18 +57,19 @@ class Packlinkpro extends Module
     public function install()
     {
         return parent::install() &&
-            $this->registerHook('backOfficeHeader') &&
+            $this->registerHook('backOfficeHeader');
     }
+    /**        
+     * Load the configuration form        
+     */
+    public function getContent()
+    {
         $this->context->smarty->assign('module_dir', $this->_path);
 
         $output = $this->context->smarty->fetch($this->local_path.'views/templates/admin/configure.tpl');
 
         return $output;
     }
-
-    /**
-     * Create the structure of your form.
-     */
     protected function getConfigForm()
     {
         return array(
