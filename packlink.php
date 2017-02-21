@@ -1093,20 +1093,22 @@ class Packlink extends Module
                         foreach ($products as $key => $value) {
                             $product = new Product($products[$key]['product_id']);
                         }
-                        
-                        if ($product->width == 0) {
-                            $product->width = ($datas->packages[0]->width * Configuration::get('PL_API_CM'));
+
+                        if (!empty($product->link_rewrite)) {
+                            if ($product->width == 0) {
+                                $product->width = ($datas->packages[0]->width * Configuration::get('PL_API_CM'));
+                            }
+                            if ($product->depth == 0) {
+                                $product->depth = ($datas->packages[0]->length * Configuration::get('PL_API_CM'));
+                            }
+                            if ($product->weight == 0) {
+                                $product->weight = ($datas->packages[0]->weight * Configuration::get('PL_API_KG'));
+                            }
+                            if ($product->height == 0) {
+                                $product->height = ($datas->packages[0]->height * Configuration::get('PL_API_CM'));
+                            }
+                            $product->save();
                         }
-                        if ($product->depth == 0) {
-                            $product->depth = ($datas->packages[0]->length * Configuration::get('PL_API_CM'));
-                        }
-                        if ($product->weight == 0) {
-                            $product->weight = ($datas->packages[0]->weight * Configuration::get('PL_API_KG'));
-                        }
-                        if ($product->height == 0) {
-                            $product->height = ($datas->packages[0]->height * Configuration::get('PL_API_CM'));
-                        }
-                        $product->save();
                     }
                 }
             }
