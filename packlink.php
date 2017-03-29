@@ -53,7 +53,7 @@ class Packlink extends Module
     {
         $this->name = 'packlink';
         $this->tab = 'shipping_logistics';
-        $this->version = '1.6.3';
+        $this->version = '1.6.4';
         $this->author = '202-ecommerce';
         $this->module_key = 'a7a3a395043ca3a09d703f7d1c74a107';
         $this->ps_versions_compliancy = array('min' => '1.5', 'max' => '2.0');
@@ -1409,7 +1409,7 @@ class Packlink extends Module
                         'category_name'  => $category,
                         'picture_url' => $product_img_link,
                         'item_id' => $value['product_id'],
-                        'price' => $value['product_price_wt'],
+                        'price' => (float) $value['product_price_wt'],
                         'item_url' => $product_link,
                         'title' => $value['product_name']
                 );
